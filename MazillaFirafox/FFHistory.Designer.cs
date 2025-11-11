@@ -59,10 +59,12 @@ namespace MazillaFirafox
             // TimeHeader
             // 
             this.TimeHeader.Text = "Time";
+            this.TimeHeader.Width = 179;
             // 
             // URLHeader
             // 
             this.URLHeader.Text = "URL";
+            this.URLHeader.Width = 435;
             // 
             // tableLayoutPanel1
             // 

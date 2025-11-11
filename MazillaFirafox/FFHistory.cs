@@ -27,8 +27,8 @@ namespace MazillaFirafox
             string[] row = { text };
             var listViewItem = listView1.Items.Add(desc);
             listViewItem.SubItems.AddRange(row);
-
         }
+
         public FFHistory(Form1 firaInst)
         {
             InitializeComponent();
@@ -47,6 +47,7 @@ namespace MazillaFirafox
         private void button1_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+            firafox.ClearHistory();
         }
         private void listView1_DoubleClick(object sender, EventArgs e) => GetItem();
         private void GetItem()

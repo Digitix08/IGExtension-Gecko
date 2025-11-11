@@ -60,6 +60,11 @@ namespace MazillaFirafox
             geckoWebBrowser1.GoForward();
         }
 
+        public void ClearHistory()
+        {
+            geckoWebBrowser1.History.Clear();
+        }
+
         private void GoTo_Click(object sender, EventArgs e)
         {
             geckoWebBrowser1.Navigate(GoToUrl.Text);
