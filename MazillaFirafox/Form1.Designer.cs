@@ -47,7 +47,7 @@ namespace MazillaFirafox
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.CurrentUrl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Search = new System.Windows.Forms.PictureBox();
             this.Back = new System.Windows.Forms.PictureBox();
@@ -199,7 +199,7 @@ namespace MazillaFirafox
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1,
             this.CurrentUrl,
-            this.toolStripStatusLabel2});
+            this.status});
             this.statusStrip1.Location = new System.Drawing.Point(0, 430);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
@@ -218,11 +218,11 @@ namespace MazillaFirafox
             this.CurrentUrl.Size = new System.Drawing.Size(62, 15);
             this.CurrentUrl.Text = "CurrentUrl";
             // 
-            // toolStripStatusLabel2
+            // status
             // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(118, 15);
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(35, 15);
+            this.status.Text = "Done";
             // 
             // panel1
             // 
@@ -249,6 +249,8 @@ namespace MazillaFirafox
             this.Search.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Search.TabIndex = 32;
             this.Search.TabStop = false;
+            this.Search.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
+            this.Search.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             // 
             // Back
             // 
@@ -261,6 +263,7 @@ namespace MazillaFirafox
             this.Back.TabIndex = 31;
             this.Back.TabStop = false;
             this.Back.Click += new System.EventHandler(this.Back_Click);
+            this.Back.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             this.Back.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             // 
             // GoHome
@@ -273,7 +276,8 @@ namespace MazillaFirafox
             this.GoHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.GoHome.TabIndex = 27;
             this.GoHome.TabStop = false;
-            this.GoHome.Click += new System.EventHandler(this.GoHome_Click);
+            this.GoHome.Click += new System.EventHandler(this.Home_Click);
+            this.GoHome.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             this.GoHome.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             // 
             // Reload
@@ -287,6 +291,7 @@ namespace MazillaFirafox
             this.Reload.TabIndex = 26;
             this.Reload.TabStop = false;
             this.Reload.Click += new System.EventHandler(this.Reload_Click);
+            this.Reload.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             this.Reload.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             // 
             // Forward
@@ -300,6 +305,7 @@ namespace MazillaFirafox
             this.Forward.TabIndex = 28;
             this.Forward.TabStop = false;
             this.Forward.Click += new System.EventHandler(this.Forward_Click);
+            this.Forward.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             this.Forward.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             // 
             // GoToUrl
@@ -324,6 +330,7 @@ namespace MazillaFirafox
             this.GoTo.TabIndex = 29;
             this.GoTo.TabStop = false;
             this.GoTo.Click += new System.EventHandler(this.GoTo_Click);
+            this.GoTo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             this.GoTo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Picture_invert);
             // 
             // toolStripSeparator4
@@ -566,6 +573,8 @@ namespace MazillaFirafox
             this.geckoWebBrowser1.Size = new System.Drawing.Size(794, 362);
             this.geckoWebBrowser1.TabIndex = 7;
             this.geckoWebBrowser1.UseHttpActivityObserver = false;
+            this.geckoWebBrowser1.Navigated += new System.EventHandler<Gecko.GeckoNavigatedEventArgs>(this.geckoWebBrowser1_Navigated);
+            this.geckoWebBrowser1.DocumentCompleted += new System.EventHandler<Gecko.Events.GeckoDocumentCompletedEventArgs>(this.geckoWebBrowser1_DocumentCompleted);
             this.geckoWebBrowser1.HistoryNewEntry += new System.EventHandler<Gecko.GeckoHistoryEventArgs>(this.geckoWebBrowser1_HistoryNewEntry);
             this.geckoWebBrowser1.ProgressChanged += new System.EventHandler<Gecko.GeckoProgressEventArgs>(this.geckoWebBrowser1_ProgressChanged);
             // 
@@ -616,7 +625,7 @@ namespace MazillaFirafox
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel CurrentUrl;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox Search;
         private System.Windows.Forms.PictureBox Back;

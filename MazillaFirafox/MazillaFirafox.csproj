@@ -149,7 +149,10 @@
     <Content Include="Firefox\softokn3.dll" />
     <Content Include="Firefox\xul.dll" />
     <Content Include="Resources\arrow_back.png" />
+    <None Include="Resources\arrow_forward_disabled.png" />
+    <None Include="Resources\arrow_back_disabled.png" />
     <Content Include="Resources\arrow_reload.png" />
+    <None Include="Resources\cancel.png" />
     <Content Include="Resources\copy.png" />
     <Content Include="Resources\cut.png" />
     <Content Include="Resources\go.png" />
