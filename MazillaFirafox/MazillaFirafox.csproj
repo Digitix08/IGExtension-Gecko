@@ -88,11 +88,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FFBrowserTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FFBrowserTab.Designer.cs">
+      <DependentUpon>FFBrowserTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FFbrowser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FFbrowser.Designer.cs">
+      <DependentUpon>FFbrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="FFHistory.cs">
       <SubType>Form</SubType>
@@ -106,16 +112,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FFBrowserTab.resx">
+      <DependentUpon>FFBrowserTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FFbrowser.resx">
+      <DependentUpon>FFbrowser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FFHistory.resx">
       <DependentUpon>FFHistory.cs</DependentUpon>
@@ -123,9 +126,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControl1.resx">
-      <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

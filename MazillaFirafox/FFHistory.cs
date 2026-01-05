@@ -14,7 +14,7 @@ namespace MazillaFirafox
     [ComVisible(true)]
     public partial class FFHistory : Form
     {
-        Form1 firafox;
+        FFbrowser firafox;
         TextBox textBox1 = new TextBox();
         DateTime time = new DateTime();
         public void add(string s)
@@ -29,7 +29,7 @@ namespace MazillaFirafox
             listViewItem.SubItems.AddRange(row);
         }
 
-        public FFHistory(Form1 firaInst)
+        public FFHistory(FFbrowser firaInst)
         {
             InitializeComponent();
             firafox = firaInst;

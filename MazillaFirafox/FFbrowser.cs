@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace MazillaFirafox
 {
-    public partial class Form1 : Form
+    public partial class FFbrowser : Form
     {
         string home = "google.com";
         string defaultsearch = "http://www.google.com/search?q=";
@@ -20,7 +20,7 @@ namespace MazillaFirafox
             home = mode;
         }
 
-        public Form1()
+        public FFbrowser()
         {
             InitializeComponent();
             Xpcom.Initialize("Firefox64");
@@ -77,7 +77,7 @@ namespace MazillaFirafox
 
         private void geckoWebBrowser1_ProgressChanged(object sender, GeckoProgressEventArgs e)
         {
-            if (e.CurrentProgress > 0 && e.MaximumProgress > 0 && e.CurrentProgress <= e.MaximumProgress)
+            if (e.CurrentProgress > 0 && e.MaximumProgress > 0 && e.CurrentProgress < e.MaximumProgress)
             {
                 long progress = 100 / (e.MaximumProgress / e.CurrentProgress);
                 if (progress >= 1) toolStripProgressBar1.Style = ProgressBarStyle.Blocks;
@@ -100,6 +100,7 @@ namespace MazillaFirafox
             toolStripProgressBar1.Step = step;
             toolStripProgressBar1.PerformStep();
             toolStripProgressBar1.Step = oldstep;
+            Reload.Image = Properties.Resources.arrow_reload;
             status.Text = "Done";
         }
 
@@ -115,7 +116,7 @@ namespace MazillaFirafox
 
         private void Reload_Click(object sender, EventArgs e)
         {
-            geckoWebBrowser1.Refresh();
+            geckoWebBrowser1.Reload();
         }
 
         private void Forward_Click(object sender, EventArgs e)
@@ -198,7 +199,7 @@ namespace MazillaFirafox
             tableLayoutPanel1.Controls.Add(geckoWebBrowser1, 0, 1);
         }*/
 
-        private void geckoWebBrowser1_Navigating(object sender, Gecko.GeckoNavigatedEventArgs e)
+        private void geckoWebBrowser1_Navigating(object sender, Gecko.Events.GeckoNavigatingEventArgs e)
         {
             toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
             toolStripProgressBar1.Value = 50;

@@ -1,7 +1,7 @@
 ﻿
 namespace MazillaFirafox
 {
-    partial class Form1
+    partial class FFbrowser
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace MazillaFirafox
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FFbrowser));
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -318,6 +318,7 @@ namespace MazillaFirafox
             this.GoToUrl.Name = "GoToUrl";
             this.GoToUrl.Size = new System.Drawing.Size(338, 29);
             this.GoToUrl.TabIndex = 30;
+            this.GoToUrl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GoToUrl_KeyDown);
             // 
             // GoTo
             // 
@@ -573,6 +574,7 @@ namespace MazillaFirafox
             this.geckoWebBrowser1.Size = new System.Drawing.Size(794, 362);
             this.geckoWebBrowser1.TabIndex = 7;
             this.geckoWebBrowser1.UseHttpActivityObserver = false;
+            this.geckoWebBrowser1.Navigating += new System.EventHandler<Gecko.Events.GeckoNavigatingEventArgs>(this.geckoWebBrowser1_Navigating);
             this.geckoWebBrowser1.Navigated += new System.EventHandler<Gecko.GeckoNavigatedEventArgs>(this.geckoWebBrowser1_Navigated);
             this.geckoWebBrowser1.DocumentCompleted += new System.EventHandler<Gecko.Events.GeckoDocumentCompletedEventArgs>(this.geckoWebBrowser1_DocumentCompleted);
             this.geckoWebBrowser1.HistoryNewEntry += new System.EventHandler<Gecko.GeckoHistoryEventArgs>(this.geckoWebBrowser1_HistoryNewEntry);
