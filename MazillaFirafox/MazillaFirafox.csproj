@@ -87,6 +87,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="FFBrowserTab.cs">
       <SubType>UserControl</SubType>
@@ -114,6 +120,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FFBrowserTab.resx">
       <DependentUpon>FFBrowserTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,6 +166,7 @@
     <Content Include="Resources\cut.png" />
     <Content Include="Resources\go.png" />
     <Content Include="Resources\home.png" />
+    <Content Include="Resources\more.png" />
     <Content Include="Resources\new.png" />
     <Content Include="Resources\open.png" />
     <Content Include="Resources\paste.png" />

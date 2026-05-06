@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,12 +25,14 @@ namespace MazillaFirafox
         {
             InitializeComponent();
             Xpcom.Initialize("Firefox64");
-            hist = new FFHistory(this);
+            hist = new FFHistory();
+            hist.AttachToForm(this);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             geckoWebBrowser1.Navigate(home);
+            aboutToolStripMenuItem.Text += getName() + "...";
         }
 
         //history
@@ -73,6 +76,20 @@ namespace MazillaFirafox
                     GoToUrl.Text = text;
                 }
             }
+        }
+
+        private string getName()
+        {
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+            if (attributes.Length > 0)
+            {
+                AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+                if (titleAttribute.Title != "")
+                {
+                    return titleAttribute.Title;
+                }
+            }
+            return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
         }
 
         private void geckoWebBrowser1_ProgressChanged(object sender, GeckoProgressEventArgs e)
@@ -225,6 +242,18 @@ namespace MazillaFirafox
                 }
             }
             ((PictureBox)sender).Image = pic;
+        }
+
+        private void newWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FFbrowser newtab = new FFbrowser();
+            newtab.Show();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About abt = new About();
+            abt.Show();
         }
     }
 }

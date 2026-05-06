@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,28 +25,30 @@ namespace MazillaFirafox
         {
             InitializeComponent();
             Xpcom.Initialize("Firefox64");
-            //hist = new FFHistory(this);
+            hist = new FFHistory();
+            hist.AttachToUControl(this);
         }
 
         private void FFBrowserTab_Load(object sender, EventArgs e)
         {
             geckoWebBrowser1.Navigate(home);
+            aboutToolStripMenuItem.Text += getName() + "...";
         }
 
         //history
         private void historyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //hist.Show();
+            hist.Show();
         }
 
         private void geckoWebBrowser1_HistoryNewEntry(object sender, GeckoHistoryEventArgs e)
         {
-            //hist.add(e.Url.ToString());
+            hist.add(e.Url.ToString());
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //hist.Dispose();
+            hist.Dispose();
         }
 
         public void ClearHistory()
@@ -58,11 +61,6 @@ namespace MazillaFirafox
             geckoWebBrowser1.Navigate(URL);
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //this.Close();
-        }
-
         private void UriChanged(string text)
         {
             if (text.Length > 0)
@@ -73,6 +71,20 @@ namespace MazillaFirafox
                     GoToUrl.Text = text;
                 }
             }
+        }
+
+        private string getName()
+        {
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+            if (attributes.Length > 0)
+            {
+                AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+                if (titleAttribute.Title != "")
+                {
+                    return titleAttribute.Title;
+                }
+            }
+            return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
         }
 
         private void geckoWebBrowser1_ProgressChanged(object sender, GeckoProgressEventArgs e)
@@ -225,6 +237,20 @@ namespace MazillaFirafox
                 }
             }
             ((PictureBox)sender).Image = pic;
+        }
+
+        private void More_Click(object sender, EventArgs e)
+        {
+            PictureBox btnSender = (PictureBox)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            MoreContextMenuStrip.Show(ptLowerLeft);
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About abt = new About();
+            abt.Show();
         }
     }
 }
